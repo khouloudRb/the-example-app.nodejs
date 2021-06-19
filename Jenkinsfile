@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('clone') {
             steps {
-                sh 'git clone https://github.com/khouloudRb/the-example-app.nodejs.git node node'
+                sh 'git clone https://github.com/khouloudRb/the-example-app.nodejs.git node'
+                sh 'cd node'
                 echo 'cloning stage'
             }
         }
