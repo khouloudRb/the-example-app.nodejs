@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'npm run start:dev'
+                sh 'npm run start:dev &'
                 echo 'Deploy stage'
             }
         }
