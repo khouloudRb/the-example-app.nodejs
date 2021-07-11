@@ -1,23 +1,26 @@
 pipeline {
-    agent any
+    agent { dockerfile true }
+
+
     stages {
-        stage('clone') {
-            steps {
-                sh 'git clone https://github.com/khouloudRb/the-example-app.nodejs.git node'
-                sh 'cd node'
-                echo 'cloning stage'
+
+        stage ("Install dependenciess"){
+            steps{
+                sh "pwd"
+                echo "installing dependencies"
+                sh "npm install"
             }
         }
-        stage('Dependencies installation') {
-            steps {
-                sh 'npm install'
-                echo 'Dependencies installation stage'
+        stage ("Deploy"){
+            steps{
+                echo "start project"
+                sh "npm run start:dev &"
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'npm run start:dev &'
-                echo 'Deploy stage'
+        stage ("Test"){
+            steps{
+                echo "verify"
+                sh "curl http://localhost:3000"
             }
         }
     }
